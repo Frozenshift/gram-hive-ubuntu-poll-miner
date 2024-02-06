@@ -1,6 +1,31 @@
 clear
 echo "GRAM Miner configurator"
 echo "--------------------------------------"
+if [ -e run.sh ]
+then
+ echo "Конфигурация загружена"
+ PS3="Выберите операцию: "
+
+ select opt in run_miner delete_config quit; do
+
+   case $opt in
+     run_miner)
+       ./run.sh
+       ;;
+     delete_config)
+         rm run.sh
+         break
+       ;;
+     quit)
+       break
+       ;;
+     *)
+       echo "Недопустимая опция $REPLY"
+       ;;
+   esac
+ done
+clear
+fi
 
 
 read -p "Enter you wallet: " n1
